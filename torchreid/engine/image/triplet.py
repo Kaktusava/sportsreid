@@ -98,7 +98,7 @@ class ImageTripletEngine(Engine):
 
         self.criterion_t = TripletLoss(margin=margin,
                                        num_instances=datamanager.num_instances,
-                                       dim=model.module.feature_dim,
+                                    #    dim=model.module.feature_dim,
                                        topk=topk,
                                        bottomk=bottomk)
         self.criterion_x = CrossEntropyLoss(

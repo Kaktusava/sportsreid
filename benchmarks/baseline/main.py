@@ -44,16 +44,16 @@ def build_engine(cfg, datamanager, model, optimizer, scheduler):
                 margin=cfg.loss.triplet.margin,
                 weight_t=cfg.loss.triplet.weight_t,
                 weight_x=cfg.loss.triplet.weight_x,
-                weight_tc=cfg.loss.triplet.weight_tc,
-                weight_cc=cfg.loss.triplet.weight_cc,
+                # weight_tc=cfg.loss.triplet.weight_tc, #
+                # weight_cc=cfg.loss.triplet.weight_cc, #
                 scheduler=scheduler,
                 use_gpu=cfg.use_gpu,
                 label_smooth=cfg.loss.softmax.label_smooth,
-                topk=cfg.loss.triplet.topk,
-                bottomk=cfg.loss.triplet.bottomk,
-                warmup_lr = cfg.train.warmup_lr,
-                warmup_steps = cfg.train.warmup_steps,
-                lr = cfg.train.lr
+                topk=cfg.loss.triplet.topk, #
+                bottomk=cfg.loss.triplet.bottomk, #
+                warmup_lr = cfg.train.warmup_lr, #
+                warmup_steps = cfg.train.warmup_steps, #
+                lr = cfg.train.lr #
             )
 
     else:
@@ -165,7 +165,7 @@ def main():
         loss=cfg.loss.name,
         pretrained=cfg.model.pretrained,
         use_gpu=cfg.use_gpu,
-        img_size=(cfg.data.height, cfg.data.width),
+        # img_size=(cfg.data.height, cfg.data.width),
     )
     num_params, flops = compute_model_complexity(
         model, (1, 3, cfg.data.height, cfg.data.width)

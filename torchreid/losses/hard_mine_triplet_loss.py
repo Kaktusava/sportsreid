@@ -23,7 +23,7 @@ class TripletLoss(nn.Module):
         self.topk = topk
         self.bottomk = bottomk
 
-    def forward(self, inputs, targets):
+    def forward(self, inputs, targets, epoch):
         """
         Args:
             inputs (torch.Tensor): feature matrix with shape (batch_size, feat_dim).

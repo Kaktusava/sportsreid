@@ -4,8 +4,8 @@ model:
 data:
   type: 'image'
   root: 'datasets' # SoccerNet train/test/valid/challenge sets will be downloaded under '/path/to/project/datasets/soccernetv3/reid/'
-  height: 256
-  width: 128
+  height: 224
+  width: 224
   workers: 4
   sources: ['soccernetv3']
   targets: ['soccernetv3', 'soccernetv3_test', 'soccernetv3_challenge']
@@ -13,9 +13,8 @@ data:
   # training and validation sets are in the 'soccernetv3' dataset
   # test set is in the 'soccernetv3_test' dataset
   # challenge set is in the 'soccernetv3_challenge' dataset
-  save_dir: 'debug'
 soccernetv3:
-  training_subset: 1.0 # train model on 1% of training set samples
+  training_subset: 1.0 #1.0 # train model on 1% of training set samples
 
 sampler:
   train_sampler: RandomIdentitySampler
@@ -36,13 +35,16 @@ loss:
     bottomk: 1
 
 train:
-  batch_size: 128
-  print_freq: 100
-  max_epoch: 40
-#  optim: 'adamw'
-#  warmup_lr: 0.0001
-#  warmup_steps: 10
-
+  batch_size: 192
+  print_freq: 10
+  max_epoch: 50
+  lr: 5e-05 #5.0e-04
+  lr_scheduler: 'cosine'
+  min_lr: 1.0e-6 #5.0e-5
+  optim: 'adam'
+  warmup_lr: 1.0e-5
+  warmup_steps: 1000 #1000
+  weight_decay: 0.0005
 test:
   ranks: [1]
   export_ranking_results: True # export ranking result to JSON file for external evaluation
