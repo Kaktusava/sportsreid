@@ -8,13 +8,13 @@ data:
   width: 224
   workers: 4
   sources: ['soccernetv3']
-  targets: ['soccernetv3', 'soccernetv3_test', 'soccernetv3_challenge']
+  targets: ['soccernetv3', 'soccernetv3_test'] #, 'soccernetv3_challenge']
 #  transforms: ['random_flip', 'random_crop', 'random_patch', 'random_erase']
   # training and validation sets are in the 'soccernetv3' dataset
   # test set is in the 'soccernetv3_test' dataset
   # challenge set is in the 'soccernetv3_challenge' dataset
 soccernetv3:
-  training_subset: 1.0 #1.0 # train model on 1% of training set samples
+  training_subset: 0.4 #1.0 # train model on 1% of training set samples
 
 sampler:
   train_sampler: RandomIdentitySampler
@@ -43,7 +43,7 @@ train:
   min_lr: 1.0e-6 #5.0e-5
   optim: 'adam'
   warmup_lr: 1.0e-5
-  warmup_steps: 1000 #1000
+  warmup_steps: 300 #1000
   weight_decay: 0.0005
 test:
   ranks: [1]
